@@ -10,13 +10,15 @@ import java.util.Map;
 public class Engine {
 
 	//remembers the productname and market conditions.
-	private Map<String, Product> productMap = new HashMap<String, Product>();
+	private Map<String, Product> productMap = new HashMap<>();
 	// remembers the productname and competitors and thier prices.
-	private Map<String, List<CompetitorPrice>> competitorPriceMap = new HashMap<String, List<CompetitorPrice>>();
+	private Map<String, List<CompetitorPrice>> competitorPriceMap = new HashMap<>();
 	//remembers our final prices.
 	private Map<String, Float> ourPrice = new HashMap<String, Float>();
 	//remembers the productnames in the order they were received from input for proper output.
-	private List<String> productNameMasterList = new ArrayList<String>();
+	private List<String> productNameMasterList = new ArrayList<>();
+	
+	private List<String> outputPrice = new ArrayList<>();
 
 	public Map<String, Product> getProductMap() {
 		return productMap;
@@ -59,7 +61,7 @@ public class Engine {
 			
 			String productName = productNameItr.next();
 			
-			Iterator<CompetitorPrice> competitorPriceItr = ((List<CompetitorPrice>)(getCompetitorPriceMap().get(productName))).iterator();
+			Iterator<CompetitorPrice> competitorPriceItr = getCompetitorPriceMap().get(productName).iterator();
 			
 			float averagePrice = 0;
 			float sum = 0;
@@ -81,9 +83,9 @@ public class Engine {
 			else
 				averagePrice = 0;
 			
-			Iterator<CompetitorPrice> competitorPriceItr1 = ((List<CompetitorPrice>)(getCompetitorPriceMap().get(productName))).iterator();
+			Iterator<CompetitorPrice> competitorPriceItr1 = getCompetitorPriceMap().get(productName).iterator();
 			
-			Map<Float, Integer> priceCount = new HashMap<Float, Integer>();
+			Map<Float, Integer> priceCount = new HashMap<>();
 			
 			//finds average and price count to know how frequently a price occurs.
 			while(competitorPriceItr1.hasNext()) {
@@ -162,12 +164,20 @@ public class Engine {
 		while(productNameItr.hasNext()) {
 			
 			String productName = productNameItr.next();
+		
+			String str = alphabet + " " + df.format(getOurPrice().get(productName));
 			
-			System.out.println(alphabet + " " + df.format(getOurPrice().get(productName)));
+			outputPrice.add(str);
+			
+			System.out.println(str);
 			
 			alphabet++;
 			
 		}
+	}
+
+	public List<String> getOutputPrice() {
+		return outputPrice;
 	}
 	
 }

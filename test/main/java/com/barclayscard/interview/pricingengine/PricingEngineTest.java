@@ -1,6 +1,9 @@
-package com.barclayscard.interview.pricingengine.test;
+package com.barclayscard.interview.pricingengine;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.After;
@@ -41,6 +44,11 @@ public class PricingEngineTest {
 		
 		parser.parse(productList, competitorList);
 		
+		Iterator<String> itr = (Iterator<String>) (parser.getEngine().getOutputPrice()).iterator();
+		
+		assertEquals(itr.next(), "A 0.9");
+		assertEquals(itr.next(), "B 10.5");
+		
 		System.out.println();
 		
 	}
@@ -69,6 +77,12 @@ public class PricingEngineTest {
 		competitorList.add("ssd Z 12.0");
 		
 		parser.parse(productList, competitorList);
+		
+		Iterator<String> itr = (Iterator<String>) (parser.getEngine().getOutputPrice()).iterator();
+		
+		assertEquals(itr.next(), "A 50.0");
+		assertEquals(itr.next(), "B 12.1");
+		
 		System.out.println();
 		
 	}
@@ -103,6 +117,13 @@ public class PricingEngineTest {
 		competitorList.add("ssd Y 12.5");
 		
 		parser.parse(productList, competitorList);
+		
+		Iterator<String> itr = (Iterator<String>) (parser.getEngine().getOutputPrice()).iterator();
+		
+		assertEquals(itr.next(), "A 50.0");
+		assertEquals(itr.next(), "B 11.0");
+		assertEquals(itr.next(), "C 0.9");
+		
 		System.out.println();
 		
 	}

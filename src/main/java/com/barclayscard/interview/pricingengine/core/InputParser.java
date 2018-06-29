@@ -58,7 +58,7 @@ public class InputParser {
 				List<CompetitorPrice> competitorPriceList = engine.getCompetitorPriceMap().get(productName);
 				
 				if(competitorPriceList == null) {
-					competitorPriceList = new ArrayList<CompetitorPrice>();
+					competitorPriceList = new ArrayList<>();
 				}
 				competitorPriceList.add(competitorPrice);
 				engine.getCompetitorPriceMap().put(productName, competitorPriceList);			
@@ -73,59 +73,36 @@ public class InputParser {
 	
 	public static void main(String args[]) {
 	
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+		List<String> productsListStrings = new ArrayList<>();
 		String str = null;
-		try {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 			str = br.readLine();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		Integer countOfProducts = Integer.parseInt(str);
-		
-		List<String> productsListStrings = new ArrayList<String>();
-		
-		for(int i = 0; i < countOfProducts; i++) {
-			try {
+			Integer countOfProducts = Integer.parseInt(str);
+			for(int i = 0; i < countOfProducts; i++) {
 				productsListStrings.add(br.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		try {
+
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 			str = br.readLine();
+		
+			Integer countOfCompetitors = Integer.parseInt(str);
 			
+			List<String> competitorsListStrings = new ArrayList<>();
+			for(int i = 0; i < countOfCompetitors; i++) {
+			
+				competitorsListStrings.add(br.readLine());
+			}	
+
+			InputParser parser = new InputParser();
+			parser.parse(productsListStrings, competitorsListStrings);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		Integer countOfCompetitors = Integer.parseInt(str);
-		
-		List<String> competitorsListStrings = new ArrayList<String>();
-		
-		for(int i = 0; i < countOfCompetitors; i++) {
-			try {
-				competitorsListStrings.add(br.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		if(br != null)
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		
-		InputParser parser = new InputParser();
-		parser.parse(productsListStrings, competitorsListStrings);
-
 	}
 
 	public Engine getEngine() {
