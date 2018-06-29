@@ -30,8 +30,8 @@ public class PricingEngineTest {
 		
 		InputParser parser = new InputParser();
 		
-		List<String> productList = new ArrayList<String>();
-		List<String> competitorList = new ArrayList<String>();
+		List<String> productList = new ArrayList<>();
+		List<String> competitorList = new ArrayList<>();
 		
 		productList.add("flashdrive H H");
 		productList.add("ssd L H");
@@ -61,8 +61,8 @@ public class PricingEngineTest {
 		
 		InputParser parser = new InputParser();
 		
-		List<String> productList = new ArrayList<String>();
-		List<String> competitorList = new ArrayList<String>();
+		List<String> productList = new ArrayList<>();
+		List<String> competitorList = new ArrayList<>();
 		
 		productList.add("mp3player H H");
 		productList.add("ssd L L");
@@ -95,8 +95,8 @@ public class PricingEngineTest {
 		
 		InputParser parser = new InputParser();
 		
-		List<String> productList = new ArrayList<String>();
-		List<String> competitorList = new ArrayList<String>();
+		List<String> productList = new ArrayList<>();
+		List<String> competitorList = new ArrayList<>();
 		
 		productList.add("mp3player H H");
 		productList.add("ssd L L");
